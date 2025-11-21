@@ -39,5 +39,4 @@ export class FavoritePokemon {
 }
 
 export const FavoritePokemonSchema = SchemaFactory.createForClass(FavoritePokemon);
-FavoritePokemonSchema.index({ pokemonId: 1 }, { unique: true });
 

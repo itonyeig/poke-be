@@ -48,7 +48,7 @@ export class PokemonService {
 
   async getPokemonById(id: number, fetchEvolutions: boolean = true): Promise<Pokemon> {
     try {
-      const response = await this.pokeAxiosClient.get<PokemonApiResponse>(`/${id}`);
+      const response = await this.pokeAxiosClient.get<PokemonApiResponse>(`/${id}/`);
       const data = response.data;
       if (response.status !== 200 || !data) {
         throw new BadRequestException('Failed to get pokemon');
@@ -71,7 +71,8 @@ export class PokemonService {
     }
     catch (error: any) {
       const err = error?.response?.data || error;
-      throw new BadRequestException(err?.message || 'Failed to fetch data');
+      console.error('Error fetching pokemon by id', err);
+      throw new BadRequestException(err?.message || 'Failed to fetch pokemon');
     }
   }
 
@@ -129,7 +130,8 @@ export class PokemonService {
         return [];
       }
       return this.collectEvolutionOptions(targetNode.evolves_to);
-    } catch {
+    } catch(error: any) {
+      console.error('Error fetching evolution options', error);
       return [];
     }
   }
