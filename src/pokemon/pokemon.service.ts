@@ -66,7 +66,8 @@ export class PokemonService {
   }
 
   async getPokemonById(id: number, fetchEvolutions: boolean = true): Promise<Pokemon> {
-    const cacheKey = `${this.CACHE_KEY_POKEMON}-${id}-${fetchEvolutions}`;
+    const evolutionKey = fetchEvolutions ? 'true' : 'false';
+    const cacheKey = `${this.CACHE_KEY_POKEMON}-${id}-${evolutionKey}`;
     
     // Try to get from cache first
     const cachedData = await this.cacheManager.get<Pokemon>(cacheKey);
