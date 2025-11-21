@@ -10,7 +10,7 @@ export interface PokemonResult {
   url: string;
 }
 
-export interface Pokemon {
+export interface PokemonApiResponse {
   abilities: Ability2[];
   base_experience: number;
   cries: Cries;
@@ -34,11 +34,20 @@ export interface Pokemon {
   evolutions?: Evolution[];
 }
 
-interface Evolution {
+export interface Pokemon {
   id: number;
-  is_default: boolean;
-  url: string;
+  name: string;
+  types: string[];
+  abilities: string[];
+//   evolutions?: Evolution[];
+  image: string;
 }
+
+// interface Evolution {
+//   id: number;
+//   is_default: boolean;
+//   url: string;
+// }
 
 interface Type {
   slot: number;
